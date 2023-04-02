@@ -49,9 +49,7 @@ if [[ "$OSTYPE" == "linux-gnu"* && ! `dpkg --list | grep libjsoncpp-dev` ]]; the
     sudo apt install libjsoncpp-dev
 elif [[ "$OSTYPE" == "darwin"* && ! `brew list | grep jsoncpp` ]]; then
     brew install jsoncpp
-elif [ true ];then
-    echo "jsoncpp is already installed"
-fi
+
 
 #install pakage for node
 cd Web/
