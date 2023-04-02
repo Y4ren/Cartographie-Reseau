@@ -45,15 +45,17 @@ if which npm > /dev/null
 fi 
 
 #check and install libjson-cpp
-if [[ "$OSTYPE" == "linux-gnu"* && ! `dpkg --list | grep libjsoncpp-dev`]]; then
+if [[ "$OSTYPE" == "linux-gnu"* && ! `dpkg --list | grep libjsoncpp-dev` ]]; then
     sudo apt install libjsoncpp-dev
 elif [[ "$OSTYPE" == "darwin"* && ! `brew list | grep jsoncpp` ]]; then
     brew install jsoncpp
+elif [ true ];then
+    echo "jsoncpp is already installed"
 fi
 
 #install pakage for node
 cd Web/
-npm install
+sudo npm install
 cd .. 
 
 #compile the sources
