@@ -1,0 +1,4 @@
+FROM grafana/grafana-enterprise:latest
+
+RUN grafana-cli plugins install marcusolsson-json-datasource
+RUN grafana-cli plugins install marcusolsson-csv-datasource

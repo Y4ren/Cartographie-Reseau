@@ -1,0 +1,13 @@
+{
+  "Scan specific machine": [
+    ["Agresive", "-A -Pn -vv"],
+    ["OS detection", "-Pn -O -v"],
+    ["Version Detection", "-Pn -sV --version-all -p-"]
+  ],
+  "Scan network": [
+    ["Host only (IP)", "-sn --send-ip"],
+    ["Host only (ARP)", "-sn --send-eth"],
+    ["Scan specific port and service detection", "-sV -Pn"]
+  ],
+  "Custom": []
+}

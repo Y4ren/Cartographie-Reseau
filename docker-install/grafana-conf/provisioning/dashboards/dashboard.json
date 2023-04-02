@@ -1,0 +1,569 @@
+{
+    "__inputs": [
+      {
+        "name": "DS_JSON",
+        "label": "JSON",
+        "description": "",
+        "type": "datasource",
+        "pluginId": "marcusolsson-json-datasource",
+        "pluginName": "JSON API"
+      },
+      {
+        "name": "DS_CSV",
+        "label": "CSV",
+        "description": "",
+        "type": "datasource",
+        "pluginId": "marcusolsson-csv-datasource",
+        "pluginName": "CSV"
+      }
+    ],
+    "__elements": {},
+    "__requires": [
+      {
+        "type": "grafana",
+        "id": "grafana",
+        "name": "Grafana",
+        "version": "9.3.2"
+      },
+      {
+        "type": "datasource",
+        "id": "marcusolsson-csv-datasource",
+        "name": "CSV",
+        "version": "0.6.3"
+      },
+      {
+        "type": "datasource",
+        "id": "marcusolsson-json-datasource",
+        "name": "JSON API",
+        "version": "1.3.2"
+      },
+      {
+        "type": "panel",
+        "id": "nodeGraph",
+        "name": "Node Graph",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "piechart",
+        "name": "Pie chart",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "table",
+        "name": "Table",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "timeseries",
+        "name": "Time series",
+        "version": ""
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "JSONDS"
+        },
+        "description": "",
+        "gridPos": {
+          "h": 23,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 5,
+        "pluginVersion": "9.1.6",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "JSONDS"
+            },
+            "fields": [
+              {
+                "jsonPath": "$[*].MAC",
+                "language": "jsonpath",
+                "name": "id"
+              },
+              {
+                "jsonPath": "$[*].MAC",
+                "language": "jsonpath",
+                "name": "title"
+              }
+            ],
+            "key": "Q-6e1f6edd-d5ff-47a4-b6fb-d313f6dfc7d9-0",
+            "method": "GET",
+            "queryParams": "",
+            "refId": "nodes",
+            "urlPath": "/nodes.json"
+          },
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "JSONDS"
+            },
+            "fields": [
+              {
+                "jsonPath": "$[*].id",
+                "name": "id"
+              },
+              {
+                "jsonPath": "$[*].srcMAC",
+                "language": "jsonpath",
+                "name": "source"
+              },
+              {
+                "jsonPath": "$[*].dstMAC",
+                "language": "jsonpath",
+                "name": "target"
+              }
+            ],
+            "headers": [],
+            "hide": false,
+            "method": "GET",
+            "queryParams": "",
+            "refId": "edges",
+            "urlPath": "/edges.json"
+          }
+        ],
+        "title": "Graphe des machines",
+        "type": "nodeGraph"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-csv-datasource",
+          "uid": "CSVDS"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMin": 0,
+              "barAlignment": 1,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "log": 2,
+                "type": "log"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "displayName": "paquets par seconde",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "pps"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Field 3"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Octets par Seconde"
+                },
+                {
+                  "id": "unit",
+                  "value": "binBps"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 11,
+          "x": 0,
+          "y": 23
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "timezone": [
+            "browser"
+          ],
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "9.1.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "marcusolsson-csv-datasource",
+              "uid": "CSVDS"
+            },
+            "decimalSeparator": ".",
+            "delimiter": ",",
+            "header": false,
+            "ignoreUnknown": false,
+            "path": "/time.csv",
+            "refId": "A",
+            "schema": [
+              {
+                "name": "Field 1",
+                "type": "time"
+              },
+              {
+                "name": "Field 2",
+                "type": "number"
+              },
+              {
+                "name": "Field 3",
+                "type": "number"
+              }
+            ],
+            "skipRows": 0
+          }
+        ],
+        "title": "Densité du traffic",
+        "transformations": [],
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "JSONDS"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "sentPacketSize"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "basic"
+                },
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "receivedPacketSize"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "basic"
+                },
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 18,
+          "w": 13,
+          "x": 11,
+          "y": 23
+        },
+        "id": 7,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true
+        },
+        "pluginVersion": "9.3.2",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "JSONDS"
+            },
+            "decimalSeparator": ".",
+            "delimiter": ",",
+            "fields": [
+              {
+                "jsonPath": "$.[*].MAC"
+              },
+              {
+                "jsonPath": "$.[*].sentPacket",
+                "language": "jsonpath",
+                "name": ""
+              },
+              {
+                "jsonPath": "$.[*].sentPacketSize",
+                "language": "jsonpath",
+                "name": ""
+              },
+              {
+                "jsonPath": "$.[*].receivedPacket",
+                "language": "jsonpath",
+                "name": ""
+              },
+              {
+                "jsonPath": "$.[*].receivedPacketSize",
+                "language": "jsonpath",
+                "name": ""
+              }
+            ],
+            "header": true,
+            "ignoreUnknown": false,
+            "method": "GET",
+            "queryParams": "",
+            "refId": "A",
+            "schema": [
+              {
+                "name": "",
+                "type": "string"
+              }
+            ],
+            "skipRows": 0,
+            "urlPath": "/nodes.json"
+          }
+        ],
+        "title": "Liste des machines",
+        "transformations": [
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": true,
+                  "field": "sentPacketSize"
+                }
+              ]
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "JSONDS"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "unit": "Packet"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 11,
+          "x": 0,
+          "y": 30
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "right",
+            "showLegend": true,
+            "values": [
+              "percent",
+              "value"
+            ]
+          },
+          "pieType": "donut",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "9.1.6",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "JSONDS"
+            },
+            "fields": [
+              {
+                "jsonPath": "$[*].protocols[*].name",
+                "name": ""
+              },
+              {
+                "jsonPath": "$[*].protocols[*].occurence",
+                "language": "jsonpath",
+                "name": "",
+                "type": "number"
+              }
+            ],
+            "method": "GET",
+            "queryParams": "",
+            "refId": "A",
+            "urlPath": "/edges.json"
+          }
+        ],
+        "title": "Protocol usage",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "name": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "occurence": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "piechart"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "2022-12-01T17:08:47.000Z",
+      "to": "2022-12-01T17:13:52.000Z"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "test",
+    "uid": "_o_rQyn4kd",
+    "version": 1,
+    "weekStart": ""
+  }

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	curl --silent --output /dev/null ifconfig.co
+	if [[ $? -eq 0 ]]
+	then
+		sudo python3 /home/lbnf/lbnf/c -i eth0
+
+		break
+	fi
+	sleep 1m
+
+done

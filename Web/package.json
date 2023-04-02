@@ -1,0 +1,25 @@
+{
+  "name": "lbnf",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.2.96",
+    "d3": "^7.8.2",
+    "d3-force": "^3.0.0",
+    "vue": "^3.2.45",
+    "vuetify": "^3.1.11"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "eslint": "^8.36.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "vite": "^4.0.0"
+  }
+}
