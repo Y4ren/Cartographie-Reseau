@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ "$EUID" -eq 0 ]; then 
+    echo -e "\x1B[31m\x1B[1mDO NOT \x1B[21m\x1B[39mrun this script as root"
+    exit
+fi
+
 if (( `python3 --version  | cut -d ' ' -f 2 | cut -d '.' -f 2` >= 10))
     then 
         echo "python 3.10 or higher already installed"

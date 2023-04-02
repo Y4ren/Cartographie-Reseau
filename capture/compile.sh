@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "\x1B[31m\x1B[1mThis script shood be run from the parent directory /lbnf"
+echo -e "\x1B[31m\x1B[1mThis script shood be run from the parent directory /lbnf\x1B[21m\x1B[39m"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # ...
     g++ $(find capture/src -name '*.cpp') -Wall -ljsoncpp -lpcap -o lbnf
@@ -7,7 +7,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     g++ -std=c++17 $(find capture/src -name '*.cpp') -Wall -lpcap -ljsoncpp -o lbnf
-        #docker-compose -f docker-install/docker-compose.yml up
+    #docker-compose -f docker-install/docker-compose.yml up
 fi
 
 if [[ $? == 0 ]] ; then
