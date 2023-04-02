@@ -10,6 +10,7 @@ fi
 #install python dependencies
 python3 -m pip install -r PY-REQUIREMENTS.txt
 
+
 #check and install node
 if which node > /dev/null
     then 
@@ -42,6 +43,13 @@ if which npm > /dev/null
             brew install npm
         fi
 fi 
+
+#check and install libjson-cpp
+if [[ "$OSTYPE" == "linux-gnu"* && ! `dpkg --list | grep libjsoncpp-dev`]]; then
+    sudo apt install libjsoncpp-dev
+elif [[ "$OSTYPE" == "darwin"* && ! `brew list | grep jsoncpp` ]]; then
+    brew install jsoncpp
+fi
 
 #install pakage for node
 cd Web/

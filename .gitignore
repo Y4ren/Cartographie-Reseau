@@ -6,6 +6,7 @@ nmap_result/*
 lbnf
 machine.json
 nodeFile.json
+Web/server/resources/*.json
 
 # Logs
 logs
