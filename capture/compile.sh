@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "\x1B[31m\x1B[1mThis script shood be run from the parent directory /lbnf\x1B[21m\x1B[39m"
+echo -e "\x1B[31m\x1B[1mThis script shood be run from the parent directory /lbnf\x1B[0m"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # ...
     g++ $(find capture/src -name '*.cpp') -Wall -ljsoncpp -lpcap -o lbnf
@@ -11,7 +11,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 if [[ $? == 0 ]] ; then
-    echo -e "\x1B[32m\x1B[1mCompile complete\x1B[21m\x1B[39m"
+    echo -e "\x1B[32m\x1B[1mCompile complete\x1B[0m"
 else
-    echo -e "\x1B[31m\x1B[1mCompile failed\x1B[21m\x1B[39m"
+    echo -e "\x1B[31m\x1B[1mCompile failed\x1B[0m"
 fi
