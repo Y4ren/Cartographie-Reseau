@@ -53,7 +53,7 @@ fi
 
 #install pakage for node
 cd Web/
-sudo npm install
+npm install
 cd .. 
 
 #compile the sources
