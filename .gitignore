@@ -1,7 +1,6 @@
 results/
 .DS_Store
 Active/__pycache__
-nmap_result/*
 .vscode
 lbnf
 machine.json
