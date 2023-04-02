@@ -6,4 +6,4 @@ fi
 
 cd Web/
 node server/utils/linksNodes.js ../nodeFile.json
-npm run dev
+sudo npm run dev
