@@ -1,5 +1,5 @@
 # LBNF
-
+Original author [@Y4ren](https://github.com/Y4ren), [@Arcelone](https://github.com/Landry-l) & [@Rulio974](https://github.com/Rulio974)
 ## Table of Contents
 
 - [LBNF](#lbnf)
